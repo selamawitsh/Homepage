@@ -1,3 +1,12 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  box-sizing: content-box;
+}
+
+
 .hero-section {
     max-width: 70em;
     margin: auto;
@@ -9,29 +18,31 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 
-
-  .img-container img {
-    position: relative;
-    width: 18em;
-    box-shadow: rgba(0, 0, 0, 0.35) -10px 10px 15px;
-    transform: scale(1.2);
-    animation: moveIn 2s ease-out forwards;
-  }
-
 @keyframes moveIn {
-    0% {
-        top: -100px;
-        left: -100px;
-        opacity: 0;  
-    }
-    100% {
-        top: 0em; 
-        left: 2.5em;
-        bottom: 1em;
-        opacity: 1;
-    }
+  0% {
+    top: -100px;
+    left: -100px;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    left: 2.5em;
+    opacity: 1;
+  }
 }
 
+.img-container img {
+  position: relative;
+  width: 18em;
+  box-shadow: rgba(0, 0, 0, 0.35) -10px 10px 15px;
+  transform: scale(1.2);
+  opacity: 0; 
+}
+
+.img-container img.animate {
+  animation: moveIn 1.5s ease-out forwards;
+  opacity: 1;
+}
 
   .hero-right{
     padding: 1.5rem 4rem;
@@ -62,3 +73,140 @@
   .links a:hover{
     color: darkgray;
   }
+
+  /* projects section */
+
+  .card-container{
+    max-width: 70em;
+    display: grid;
+    grid-template-columns: repeat(3, 21em);
+    gap: 1em;
+    margin: auto;
+    margin-top: 2em;
+    object-fit: contain;
+    justify-content: center;
+  }
+  
+  .title{
+    margin-top: 100px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: "Dancing Script", cursive;
+  font-size: 1.5rem;
+  }
+  .card img {
+    width: 100%;
+    border-radius: 25px 25px 0px 0px;
+    height: 50%;
+  }
+
+  .card {
+    max-height: 28em;
+    max-width: 100%;
+    border: 1px solid hsl(219, 26%, 25%);
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+
+.text {
+  padding: 1em;
+  height: 53%;
+  display: flex;
+  flex-direction: column;
+}
+
+.first-line {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.first-line h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.5rem;
+  transition: all 0.2s ease;
+   position: relative; 
+  display: inline-block; 
+}
+
+
+.first-line h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px; /* Adjusts the underline position */
+  width: 0%;
+  height: 2px;
+  background-color: rgb(70, 66, 66); /* Change color if needed */
+  transition: width 0.3s ease-in-out;
+}
+
+.first-line:hover h3::after {
+  width: 100%; /* Expands from left to right */
+}
+
+.first-line:hover .card-links i {
+  transform: scale(1.2); /* Enlarges the icons */
+  transition: transform 0.3s ease-in-out;
+}
+
+
+
+.card-links a{
+  font-size: 1.5em;
+  text-decoration: none;
+  color: darkgray;
+  padding: 2px;
+}
+
+.text p {
+  font-size: 1em;
+  line-height: 1.1em;
+}
+
+.tech{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.tech i{
+  font-size: 2.3em;
+  color: rgb(74, 72, 72);
+  padding-top: 0.5em;
+}
+
+.text i:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.card.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.card:hover {
+  scale: 1.2;
+}
