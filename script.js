@@ -53,3 +53,24 @@ document.addEventListener("DOMContentLoaded", function () {
     checkScroll(); // Run once on load in case cards are already in view
   });
   
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const contactImage = document.querySelector(".contact-right img");
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            contactImage.classList.add("show"); // Apply animation when visible
+          } else {
+            contactImage.classList.remove("show"); // Remove to replay animation
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger when 50% of the image is visible
+    );
+  
+    observer.observe(contactImage);
+  });
+  
