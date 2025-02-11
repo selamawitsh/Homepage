@@ -1,24 +1,23 @@
-// Wait until the page has fully loaded
 document.addEventListener("DOMContentLoaded", function () {
-    
-    // Get the image inside the .img-container
-    const image = document.querySelector(".img-container img");
+  const image = document.querySelector(".img-container img");
 
-    // Create an observer to watch when the image appears on the screen
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) { 
-                // If the image is visible, add the animation
-                image.classList.add("animate");
-            } else { 
-                // If the image is not visible, remove the animation (so it plays again)
-                image.classList.remove("animate");
-            }
-        });
-    }, { threshold: 0.5 }); // Animation triggers when 50% of the image is visible
+  if (!image) {
+      console.error("Image not found! Check your HTML and selector.");
+      return;
+  }
 
-    // Start watching the image
-    observer.observe(image);
+  const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+          console.log("Image visibility:", entry.isIntersecting); // Debugging
+          if (entry.isIntersecting) { 
+              image.classList.add("animate");
+          } else { 
+              image.classList.remove("animate"); // Remove class when out of view
+          }
+      });
+  }, { threshold: 0.5 });
+
+  observer.observe(image);
 });
 
 
